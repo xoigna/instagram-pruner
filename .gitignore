@@ -1,0 +1,12 @@
+/target
+**/*.rs.bk
+Cargo.lock.bak
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+history/
+session.json
+*.session.json
+session.json.tmp

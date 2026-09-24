@@ -1,0 +1,84 @@
+[package]
+name = "instagram-pruner"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+description = "Instagram content pruner (posts + DMs) via the private mobile API"
+license = "GPL-3.0"
+authors = ["xoigna"]
+repository = "https://github.com/xoigna/instagram-pruner"
+
+[dependencies]
+anyhow = { version = "1.0.104", default-features = false, features = ["std"] }
+base64 = { version = "0.23.1", default-features = false, features = ["std"] }
+chrono = { version = "0.4.45", default-features = false, features = [
+    "clock",
+    "std",
+    "serde",
+] }
+clap = { version = "4.6.7", default-features = false, features = [
+    "std",
+    "derive",
+    "help",
+    "usage",
+    "error-context",
+] }
+crossterm = { version = "0.29.0", default-features = false, features = [
+    "events",
+    "event-stream",
+    "windows",
+] }
+dotenvy = { version = "0.15.7", default-features = false }
+futures-util = { version = "0.3.34", default-features = false, features = ["std"] }
+ratatui = { version = "0.30.2", default-features = false, features = ["crossterm_0_29"] }
+serde = { version = "1.0.229", default-features = false, features = ["std", "derive"] }
+serde_json = { version = "1.0.151", default-features = false, features = [
+    "std",
+    "arbitrary_precision",
+] }
+thiserror = { version = "2.0.21", default-features = false }
+tokio = { version = "1.53.1", default-features = false, features = [
+    "macros",
+    "rt-multi-thread",
+    "time",
+    "sync",
+] }
+tracing = { version = "0.1.44", default-features = false, features = [
+    "std",
+    "attributes",
+] }
+tracing-subscriber = { version = "0.3.23", default-features = false, features = [
+    "std",
+    "fmt",
+    "env-filter",
+    "ansi",
+] }
+urlencoding = { version = "2.1.3", default-features = false }
+uuid = { version = "1.26.1", default-features = false, features = ["std", "v4"] }
+wreq = { version = "6.0.0-rc.31", default-features = false, features = [
+    "gzip",
+    "query",
+    "tokio-rt",
+    "webpki-roots",
+] }
+wreq-util = { version = "3.0.0-rc.14", default-features = false, features = ["emulation"] }
+
+[profile.dev]
+incremental = true
+debug = "line-tables-only"
+
+[profile.test]
+incremental = true
+debug = "line-tables-only"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+
+[profile.release-fast]
+inherits = "release"
+lto = false
+codegen-units = 16
+strip = true
